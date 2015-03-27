@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8761}
+security:
+  user:
+    password: ${eureka.password}
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  password: ${EUREKA_USER_PASSWORD:password}
