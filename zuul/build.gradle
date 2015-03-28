@@ -1,0 +1,5 @@
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.0.0.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-config-client'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka:1.0.0.RELEASE'
+}

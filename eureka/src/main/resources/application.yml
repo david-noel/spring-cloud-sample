@@ -11,3 +11,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
   password: ${EUREKA_USER_PASSWORD:password}
+
+endpoints:
+  health:
+    sensitive: false

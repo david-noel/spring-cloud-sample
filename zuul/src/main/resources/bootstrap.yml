@@ -1,10 +1,10 @@
 # I'm not sure but I think the port needs to be in the bootstrap because the config server is fetched from eureka
 server:
-  port: ${PORT:8081}
+  port: ${PORT:8080}
 
 spring:
   application:
-    name: service1
+    name: zuulserver
   cloud:
     config:
       discovery:
@@ -18,8 +18,7 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
----
-spring:
-  profiles: instance2
-server:
-  port: 8071
+zuul:
+  routes:
+    service1: /s1/**
+    service2: /s2/**
