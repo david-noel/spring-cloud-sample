@@ -3,4 +3,5 @@ spring:
     name: service2
   cloud:
     config:
-      enabled: true
+      discovery:
+        enabled: true
