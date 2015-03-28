@@ -1,2 +1,4 @@
 include 'eureka'
 include 'config'
+include 'service1'
+include 'service2'
