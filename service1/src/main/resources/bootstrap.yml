@@ -3,4 +3,4 @@ spring:
     name: service1
   cloud:
     config:
-      enabled: true
+      uri: http://localhost:8888

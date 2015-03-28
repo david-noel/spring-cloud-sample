@@ -29,5 +29,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/david-noel/spring-cloud-sample.git
-          basedir: config-repo
+          uri: https://github.com/david-noel/spring-cloud-sample-config
