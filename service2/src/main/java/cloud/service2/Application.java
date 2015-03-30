@@ -40,8 +40,8 @@ public class Application {
 
         discoveryClient.getInstances("service1")
                 .forEach(si -> logger.warn("service1 instance {}:{}", si.getHost(), si.getPort()));
-        return service1.welcome(name) + service2Properties.getBody();
-        //return restTemplate.getForObject("http://service1/welcome/{name}", String.class, name) + body;
+        //return service1.welcome(name) + service2Properties.getBody();
+        return restTemplate.getForObject("http://service1/welcome/{name}", String.class, name) + service2Properties.getBody();
     }
 
     public static void main(String... args) {
