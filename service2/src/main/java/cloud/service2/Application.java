@@ -9,9 +9,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.ApplicationEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,11 +34,6 @@ public class Application {
 
     @Autowired
     private Service2Properties service2Properties;
-
-    @Bean
-    public ApplicationListener<ApplicationEvent> customListener() {
-        return e -> logger.warn("Event is {}", e.getClass().getSimpleName());
-    }
 
     @RequestMapping("/body/{name}")
     public String body(@PathVariable String name) {
