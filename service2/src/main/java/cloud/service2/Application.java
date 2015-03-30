@@ -5,9 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableConfigurationProperties(Service2Properties.class)
 @RestController
 public class Application {
 
@@ -30,14 +35,20 @@ public class Application {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    String body = ", This is the body content";
+    @Autowired
+    private Service2Properties service2Properties;
+
+    @Bean
+    public ApplicationListener<ApplicationEvent> customListener() {
+        return e -> logger.warn("Event is {}", e.getClass().getSimpleName());
+    }
 
     @RequestMapping("/body/{name}")
     public String body(@PathVariable String name) {
 
         discoveryClient.getInstances("service1")
                 .forEach(si -> logger.warn("service1 instance {}:{}", si.getHost(), si.getPort()));
-        return service1.welcome(name) + body;
+        return service1.welcome(name) + service2Properties.getBody();
         //return restTemplate.getForObject("http://service1/welcome/{name}", String.class, name) + body;
     }
 

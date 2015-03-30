@@ -20,7 +20,7 @@ public class Application {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Value("${format}")
-    String format = "Welcome %s!";
+    String format;
 
     @RequestMapping("/welcome/{name}")
     public String welcomeMessage(@PathVariable String name) {
