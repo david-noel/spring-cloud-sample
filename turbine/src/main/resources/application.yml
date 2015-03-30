@@ -1,0 +1,6 @@
+endpoints:
+  health:
+    sensitive: false
+
+turbine:
+  appConfig: service1, service2, zuul
