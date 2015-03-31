@@ -1,7 +1,7 @@
 springBoot {
-    requiresUnpack = ['com.netflix.eureka:eureka-core','com.netflix.eureka:eureka-client']
+    requiresUnpack = ['com.netflix.eureka:eureka-core', 'com.netflix.eureka:eureka-client']
 }
 
 dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server:1.0.0.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
 }
