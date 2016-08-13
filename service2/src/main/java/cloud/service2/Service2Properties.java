@@ -2,10 +2,10 @@ package cloud.service2;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "service2")
+@ConfigurationProperties
 public class Service2Properties {
 
-    private String body;
+    private String body = ", how are you?";
 
     public String getBody() {
         return body;

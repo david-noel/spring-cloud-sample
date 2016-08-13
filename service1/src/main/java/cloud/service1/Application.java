@@ -2,6 +2,7 @@ package cloud.service1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,13 +20,13 @@ public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    @Value("${format}")
-    String format;
+    @Autowired
+    private Service1Properties properties;
 
     @RequestMapping("/welcome/{name}")
     public String welcomeMessage(@PathVariable String name) {
         logger.warn("welcome called");
-        return String.format(format, name);
+        return String.format(properties.getFormat(), name);
     }
 
     public static void main(String... args) {

@@ -1,0 +1,16 @@
+endpoints:
+  health:
+    sensitive: false
+
+server:
+  port: ${PORT:8081}
+
+spring:
+  application:
+    name: service1
+
+---
+spring:
+  profiles: instance2
+server:
+  port: 8071
