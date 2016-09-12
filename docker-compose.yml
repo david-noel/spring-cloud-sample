@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+    service1:
+        image: dnoel/service1
+    service2:
+        image: dnoel/service2
+    zuul:
+        image: dnoel/zuul
+        ports:
+          - "8080:8080"
+    consul:
+        image: consul
+        environment:
+          - CONSUL_BIND_INTERFACE=eth0
+          - CONSUL_CLIENT_INTERFACE=eth0
+        ports:
+          - "8500:8500"

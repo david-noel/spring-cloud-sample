@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableFeignClients
 @EnableConfigurationProperties(Service2Properties.class)
 @EnableHystrix
@@ -35,22 +31,15 @@ public class Application {
     private Service1 service1;
 
     @Autowired
-    private DiscoveryClient discoveryClient;
-
-    @Autowired
     private Service2Properties service2Properties;
 
-	@Bean
-	@LoadBalanced
+    @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
     @RequestMapping("/body/{name}")
     public String body(@PathVariable String name) {
-
-        discoveryClient.getInstances("service1")
-                .forEach(si -> logger.warn("service1 instance {}:{}", si.getHost(), si.getPort()));
         return welcomeMessage(name) + service2Properties.getBody();
     }
 
